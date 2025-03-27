@@ -54,7 +54,8 @@ public class WeatherService {
                 return Optional.of(weather);
             }
         }
-        return Optional.empty();
+        Weather fetchNewWeather = fetchWeatherFromMockApi();
+        return Optional.of(fetchNewWeather);
     }
 
     public Map<String, Weather> getAllWeatherInformation() {
