@@ -10,6 +10,8 @@ import java.util.*;
 @Service
 public class WeatherService {
 
+    private int MAX_SIZE = 3;
+
     /*
         - LinkedHashMap being used because of it's Least Recently Used (LRU) feature.
         - It can kick out the oldest entry if a new one is added, given we want the
@@ -22,8 +24,8 @@ public class WeatherService {
 
         // Override the default LinkedHashMap method to keep the size at 3
         @Override
-        public boolean removeEldestEntry(Map.Entry<String, Weather> eldestCity){
-            return size() > 3;
+        protected boolean removeEldestEntry(Map.Entry<String, Weather> eldestCity){
+            return size() > MAX_SIZE;
         }
     };
 
