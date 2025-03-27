@@ -31,7 +31,6 @@ public class WeatherService {
         }
     };
 
-
     @Autowired
     public WeatherService(WeatherData weatherData) {
         /*
@@ -42,7 +41,6 @@ public class WeatherService {
             weatherMap.put(weather.getCityName(), weather);
         }
     }
-
 
     /*
         - Base method for retrieving weather based on city name.
@@ -65,15 +63,26 @@ public class WeatherService {
 
     public Weather fetchWeatherFromMockApi(String cityName) {
         System.out.println("Fetching weather information for city: " + cityName + "\n");
-        Weather fetchedNewWeather = new Weather(cityName, getRandomTemperature(), 'C', date, "Unknown weather " +
-                "conditions");
+        Weather fetchedNewWeather = new Weather(cityName, getRandomTemperature(), 'C', date, getRandomForecast());
         weatherMap.put(fetchedNewWeather.getCityName(), fetchedNewWeather);
         return fetchedNewWeather;
     };
 
-    // ----
     private int getRandomTemperature() {
         return ((int) (Math.random() * 30));
     }
 
+    private String getRandomForecast() {
+        String currentForecast;
+
+        int random = (int) (Math.random() * 4);
+        currentForecast = switch (random) {
+            case 0 -> "Cloudy";
+            case 1 -> "Sunny";
+            case 2 -> "Raining";
+            case 3 -> "Snowing";
+            default -> "Scattered Clouds";
+        };
+        return currentForecast;
+    }
 }

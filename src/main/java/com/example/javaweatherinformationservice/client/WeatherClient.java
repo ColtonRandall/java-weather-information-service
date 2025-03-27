@@ -59,7 +59,6 @@ public class WeatherClient {
                     });
                 }
 
-
                 // Get all weather in List
                 case "2" -> {
                     Map<String, Weather> weather = weatherService.getAllWeatherInformation();

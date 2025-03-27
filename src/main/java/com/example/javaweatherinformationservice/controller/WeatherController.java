@@ -33,6 +33,4 @@ public class WeatherController {
     public Map<String, Weather> getAllWeather(){
         return weatherService.getAllWeatherInformation();
     }
-
-
 }
