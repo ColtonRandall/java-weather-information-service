@@ -1,6 +1,7 @@
 package com.example.javaweatherinformationservice.service;
 
 import com.example.javaweatherinformationservice.model.Weather;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -10,7 +11,7 @@ import java.util.*;
 @Service
 public class WeatherService {
 
-    private int MAX_SIZE = 3;
+    private final int MAX_SIZE = 3;
 
     /*
         - LinkedHashMap being used because of it's Least Recently Used (LRU) feature.
@@ -30,6 +31,7 @@ public class WeatherService {
     };
 
 
+    @Autowired
     public WeatherService(WeatherData weatherData) {
         /*
             - Create the initial ArrayList with default 3 cities from WeatherData (weatherList).
