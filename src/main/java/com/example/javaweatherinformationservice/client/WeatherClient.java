@@ -29,10 +29,11 @@ public class WeatherClient {
             Map<String, Weather> weather = weatherService.getAllWeatherInformation();
             weather.forEach((city, weatherData) -> {
                 try{
+                    // the following JSON methods format the output in easy-to-read JSON output
                     json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(weatherData);
                     System.out.println(json);
                 } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
+                    throw new RuntimeException(e.getMessage());
                 }
             });
         }

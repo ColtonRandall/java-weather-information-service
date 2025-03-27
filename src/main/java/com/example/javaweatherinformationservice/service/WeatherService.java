@@ -18,8 +18,14 @@ public class WeatherService {
             - 0.75f for load factor - i.e. when 3 items are added, increase in size.
             - `false` for accessOrder - Keeps items in the order they were added.
      */
-    private Map<String, Weather> weatherMap = new LinkedHashMap<>(3, 0.75f, true);
-    // TODO removeEldestEntry?
+    private Map<String, Weather> weatherMap = new LinkedHashMap<>(3, 0.75f, true){
+
+        // Override the default LinkedHashMap method to keep the size at 3
+        @Override
+        public boolean removeEldestEntry(Map.Entry<String, Weather> eldestCity){
+            return size() > 3;
+        }
+    };
 
 
     public WeatherService(WeatherData weatherData) {
