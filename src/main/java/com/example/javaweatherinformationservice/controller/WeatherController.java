@@ -2,9 +2,13 @@ package com.example.javaweatherinformationservice.controller;
 
 import com.example.javaweatherinformationservice.model.Weather;
 import com.example.javaweatherinformationservice.service.WeatherService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
+import java.util.Optional;
 
 // Using Spring Boots built in support for REST APIs
 // Expose data via API endpoints
@@ -19,17 +23,14 @@ public class WeatherController {
     }
 
     // Simple GET methods for city & all weather
-    public void getCityWeather(@PathVariable String cityName) {
-        // TODO logic to come
-        System.out.println("City Weather information from API");
-        // TODO uncomment below code when service has logic
-//        return weatherService.getCityWeatherInformation(cityName);
+    @GetMapping("/city")
+    public Optional<Weather> getCityWeather(@PathVariable String cityName) {
+        return weatherService.getCityWeatherInformation(cityName);
     }
 
-    public void getAllWeather(){
-        System.out.println("All Weather information from API");
-        // TODO uncomment below code when service has logic
-//        return weatherService.getAllWeatherInformation();
+    @GetMapping("/all")
+    public Map<String, Weather> getAllWeather(){
+        return weatherService.getAllWeatherInformation();
     }
 
 
