@@ -12,6 +12,7 @@ import java.util.*;
 public class WeatherService {
 
     private final int MAX_SIZE = 3;
+    String date = new SimpleDateFormat("dd-MM-yyy").format(new Date());
 
     /*
         - LinkedHashMap being used because of it's Least Recently Used (LRU) feature.
@@ -54,7 +55,7 @@ public class WeatherService {
                 return Optional.of(weather);
             }
         }
-        Weather fetchNewWeather = fetchWeatherFromMockApi();
+        Weather fetchNewWeather = fetchWeatherFromMockApi(cityName);
         return Optional.of(fetchNewWeather);
     }
 
@@ -62,8 +63,17 @@ public class WeatherService {
         return weatherMap;
     }
 
-    public void fetchWeatherFromMockApi(){
-        // TODO logic to come
-        System.out.println("Weather information from API");
+    public Weather fetchWeatherFromMockApi(String cityName) {
+        System.out.println("Fetching weather information for city: " + cityName + "\n");
+        Weather fetchedNewWeather = new Weather(cityName, getRandomTemperature(), 'C', date, "Unknown weather " +
+                "conditions");
+        weatherMap.put(fetchedNewWeather.getCityName(), fetchedNewWeather);
+        return fetchedNewWeather;
+    };
+
+    // ----
+    private int getRandomTemperature() {
+        return ((int) (Math.random() * 30));
     }
+
 }
