@@ -19,55 +19,67 @@ public class WeatherClient {
     WeatherService weatherService = new WeatherService(weatherData); // Should only create this once for reuse.
     ObjectMapper objectMapper = new ObjectMapper();
     Scanner scanner = new Scanner(System.in);
+    String border = "🌧️🌥️☀️🌧️🌥️☀️🌧️🌥️☀️🌧️🌥️☀️🌧️🌥️☀️🌧️🌥️☀️";
+    boolean retrievingWeatherData = true;
     String json;
 
+    public void Welcome() {
+        System.out.println("\n" + border + "\n");
+        System.out.println("Welcome to the Java Weather Application");
+        System.out.println("\n" + border + "\n");
+        System.out.println("What would you like to do?\n");
+    }
 
-    public void run() throws Exception {
-        while (true) {
+    public void run() {
+        Welcome();
+        while (retrievingWeatherData) {
             System.out.println("1. Get Weather by City\n2. Get all weather data\n3. Exit");
             String userInput = scanner.nextLine();
 
             // Get specific city
-            if (userInput.equals("1")) {
-                System.out.println("Enter City Name: ");
-                String city = scanner.nextLine();
-                Optional<Weather> weather = weatherService.getCityWeatherInformation(city);
+            switch (userInput) {
+                case "1" -> {
+                    System.out.println("Enter City Name: ");
+                    String city = scanner.nextLine();
+                    Optional<Weather> weather = weatherService.getCityWeatherInformation(city);
 
                 /*
                     if the (optional) weather is present (i.e. Auckland),call the lambda expression
                     on the weather object 'w' and convert the data to JSON.
                  */
-                weather.ifPresent(w -> {
-                    try {
-                        // writerWithDefaultPrettyPrinter() will format it in JSON (easier to read).
-                        json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(w);
-                        System.out.println(json + "\n"); // space for formatting
+                    weather.ifPresent(w -> {
+                        try {
+                            // writerWithDefaultPrettyPrinter() will format it in JSON (easier to read).
+                            json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(w);
+                            System.out.println(json + "\n"); // space for formatting
 
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                });
-            }
-
-            // Get all weather in List
-            if (userInput.equals("2")) {
-                Map<String, Weather> weather = weatherService.getAllWeatherInformation();
-
-                weather.forEach((city, weatherData) -> {
-                            try {
-                                json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(weatherData);
-                                System.out.println(json + "\n"); // space at the end for formatting
-                            } catch (JsonProcessingException e) {
-                                throw new RuntimeException(e);
-                            }
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
                         }
-                );
-            }
+                    });
+                }
 
-            if (userInput.equals("3")) {
-                System.out.println("Exiting program... Goodbye! 👋");
-                scanner.close();
-                System.exit(0);  // Exit the program w/ 'success' code
+
+                // Get all weather in List
+                case "2" -> {
+                    Map<String, Weather> weather = weatherService.getAllWeatherInformation();
+
+                    weather.forEach((city, weatherData) -> {
+                                try {
+                                    json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(weatherData);
+                                    System.out.println(json + "\n"); // space at the end for formatting
+                                } catch (JsonProcessingException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                    );
+                }
+                case "3" -> {
+                    System.out.println("Exiting program... Goodbye! 👋");
+                    retrievingWeatherData = false;
+                    scanner.close();
+                    System.exit(0);  // Exit the program w/ 'success' code
+                }
             }
         }
     }
