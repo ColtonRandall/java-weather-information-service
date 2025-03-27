@@ -21,12 +21,8 @@ public class WeatherService {
     private Map<String, Weather> weatherMap = new LinkedHashMap<>(3, 0.75f, true);
     // TODO removeEldestEntry?
 
-    String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
     public WeatherService() {
-        weatherMap.put("Auckland", new Weather("Auckland", getRandomTemperature(), 'C', date, "Cloudy"));
-        weatherMap.put("Melbourne", new Weather("Melbourne", getRandomTemperature(), 'C', date, "Sunny"));
-        weatherMap.put("Vancouver", new Weather("Vancouver", getRandomTemperature(), 'C', date, "Raining"));
     }
 
 
@@ -51,10 +47,5 @@ public class WeatherService {
     public void fetchWeatherFromMockApi(){
         // TODO logic to come
         System.out.println("Weather information from API");
-    }
-
-    // ----
-    private int getRandomTemperature(){
-        return ((int) (Math.random() * 30));
     }
 }
