@@ -23,9 +23,10 @@ public class WeatherController {
     }
 
     // Simple GET methods for city & all weather
+    // @PathVariable needs to be in here for the URL suffix
     @GetMapping("/{city}")
-    public Optional<Weather> getCityWeather(@PathVariable String cityName) {
-        return weatherService.getCityWeatherInformation(cityName);
+    public Optional<Weather> getCityWeather(@PathVariable String city) {
+        return weatherService.getCityWeatherInformation(city);
     }
 
     @GetMapping("/all")
