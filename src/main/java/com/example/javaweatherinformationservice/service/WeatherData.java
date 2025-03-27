@@ -8,10 +8,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+/*
+    - Needs the @Component annotation so Spring can automatically
+    create and manage instances of WeatherData.
+    - Also, other classes (i.e. WeatherService), don't have to manually create it.
+ */
+@Component
 public class WeatherData {
 
-    String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    String date = new SimpleDateFormat("dd-MM-yyy").format(new Date());
 
     public List<Weather> generateWeatherInformation() {
         List<Weather> weatherList = new ArrayList<>();
