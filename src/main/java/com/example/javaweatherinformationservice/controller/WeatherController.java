@@ -23,7 +23,7 @@ public class WeatherController {
     }
 
     // Simple GET methods for city & all weather
-    @GetMapping("/city")
+    @GetMapping("/{city}")
     public Optional<Weather> getCityWeather(@PathVariable String cityName) {
         return weatherService.getCityWeatherInformation(cityName);
     }
