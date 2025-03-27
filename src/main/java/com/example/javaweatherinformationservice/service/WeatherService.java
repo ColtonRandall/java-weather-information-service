@@ -4,9 +4,7 @@ import com.example.javaweatherinformationservice.model.Weather;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 // Gets data from in-memory storage, or fetches from API
 @Service
@@ -21,6 +19,8 @@ public class WeatherService {
             - `false` for accessOrder - Keeps items in the order they were added.
      */
     private Map<String, Weather> weatherMap = new LinkedHashMap<>(3, 0.75f, true);
+    // TODO removeEldestEntry?
+
     String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
     public WeatherService() {
@@ -31,14 +31,21 @@ public class WeatherService {
 
 
     // base method for retrieving weather based on city name
-    public void getCityWeatherInformation(String cityName) {
-        // TODO logic to come
-        System.out.println(cityName);
+    /*
+        Using Optional here to avoid null exceptions if city doesn't exist.
+     */
+    public Optional<Weather> getCityWeatherInformation(String cityName) {
+        for (Weather weather : weatherMap.values()) {
+            if(Objects.equals(cityName, weather.getCityName())){
+                // If city exists, grab it
+                return Optional.of(weather);
+            }
+        }
+        return Optional.empty();
     }
 
-    public void getAllWeatherInformation() {
-        // TODO logic to come
-        System.out.println("Weather information");
+    public Map<String, Weather> getAllWeatherInformation() {
+        return weatherMap;
     }
 
     public void fetchWeatherFromMockApi(){
