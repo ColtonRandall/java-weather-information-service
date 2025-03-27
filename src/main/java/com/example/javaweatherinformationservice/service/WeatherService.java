@@ -22,13 +22,20 @@ public class WeatherService {
     // TODO removeEldestEntry?
 
 
-    public WeatherService() {
+    public WeatherService(WeatherData weatherData) {
+        /*
+            - Create the initial ArrayList with default 3 cities from WeatherData (weatherList).
+            - Add them to the weatherMap.
+         */
+        for(Weather weather : weatherData.generateWeatherInformation()){
+            weatherMap.put(weather.getCityName(), weather);
+        }
     }
 
 
-    // base method for retrieving weather based on city name
     /*
-        Using Optional here to avoid null exceptions if city doesn't exist.
+        - Base method for retrieving weather based on city name.
+        - Using Optional here to avoid null exceptions if city doesn't exist.
      */
     public Optional<Weather> getCityWeatherInformation(String cityName) {
         for (Weather weather : weatherMap.values()) {
