@@ -21,33 +21,54 @@ public class WeatherClient {
     Scanner scanner = new Scanner(System.in);
     String json;
 
+
     public void run() throws Exception {
-        System.out.println("Enter city name: \n or press 'a' to view all cities");
-        String response = scanner.nextLine();
+        while (true) {
+            System.out.println("1. Get Weather by City\n2. Get all weather data\n3. Exit");
+            String userInput = scanner.nextLine();
 
-        if (response.equals("a")) {
-            Map<String, Weather> weather = weatherService.getAllWeatherInformation();
-            weather.forEach((city, weatherData) -> {
-                try{
-                    // the following JSON methods format the output in easy-to-read JSON output
-                    json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(weatherData);
-                    System.out.println(json);
-                } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e.getMessage());
-                }
-            });
-        }
+            // Get specific city
+            if (userInput.equals("1")) {
+                System.out.println("Enter City Name: ");
+                String city = scanner.nextLine();
+                Optional<Weather> weather = weatherService.getCityWeatherInformation(city);
 
-        Optional<Weather> weather = weatherService.getCityWeatherInformation(response);
-        try{
-            if(weather.isPresent()){
-                json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(weather.get());
-                System.out.println(json);
-            } else {
-                System.out.println(response + " not found");
+                /*
+                    if the (optional) weather is present (i.e. Auckland),call the lambda expression
+                    on the weather object 'w' and convert the data to JSON.
+                 */
+                weather.ifPresent(w -> {
+                    try {
+                        // writerWithDefaultPrettyPrinter() will format it in JSON (easier to read).
+                        json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(w);
+                        System.out.println(json + "\n"); // space for formatting
+
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                });
             }
-        } catch (JsonProcessingException e) {
-            throw new Exception("Json processing error for " + response);
+
+            // Get all weather in List
+            if (userInput.equals("2")) {
+                Map<String, Weather> weather = weatherService.getAllWeatherInformation();
+
+                weather.forEach((city, weatherData) -> {
+                            try {
+                                json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(weatherData);
+                                System.out.println(json + "\n"); // space at the end for formatting
+                            } catch (JsonProcessingException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                );
+            }
+
+            if (userInput.equals("3")) {
+                System.out.println("Exiting program... Goodbye! 👋");
+                scanner.close();
+                System.exit(0);  // Exit the program w/ 'success' code
+            }
         }
     }
 }
