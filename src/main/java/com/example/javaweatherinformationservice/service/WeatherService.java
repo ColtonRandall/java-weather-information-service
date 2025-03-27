@@ -47,6 +47,7 @@ public class WeatherService {
         - Using Optional here to avoid null exceptions if city doesn't exist.
      */
     public Optional<Weather> getCityWeatherInformation(String cityName) {
+
         for (Weather weather : weatherMap.values()) {
             if(Objects.equals(cityName, weather.getCityName())){
                 // If city exists, grab it

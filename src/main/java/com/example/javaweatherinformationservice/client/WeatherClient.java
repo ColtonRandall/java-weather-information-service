@@ -41,19 +41,24 @@ public class WeatherClient {
                 case "1" -> {
                     System.out.println("Enter City Name: ");
                     String city = scanner.nextLine();
-                    Optional<Weather> weather = weatherService.getCityWeatherInformation(city);
+
+                    while (city == null || city.isEmpty()) {
+                        System.out.println("⚠️ Error - City name cannot be empty. Please enter a valid city name: ");
+                        city = scanner.nextLine();
+                    }
 
                 /*
                     if the (optional) weather is present (i.e. Auckland),call the lambda expression
                     on the weather object 'w' and convert the data to JSON.
                  */
+                    Optional<Weather> weather = weatherService.getCityWeatherInformation(city);
                     weather.ifPresent(w -> {
                         try {
                             // writerWithDefaultPrettyPrinter() will format it in JSON (easier to read).
                             json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(w);
                             System.out.println(json + "\n"); // space for formatting
 
-                        } catch (Exception e) {
+                        } catch (JsonProcessingException e) {
                             System.out.println(e.getMessage());
                         }
                     });
