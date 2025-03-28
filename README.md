@@ -42,6 +42,10 @@ Unit tests added are passing at the time of submission:
 
 ![AllWeather.png](images/AllWeather.png)
 
+`/weather/all` - After adding / fetching new cities, retrieve all weather and ensure the list has updated
+
+![UpdatedList.png](images/UpdatedList.png)
+
 
 
 

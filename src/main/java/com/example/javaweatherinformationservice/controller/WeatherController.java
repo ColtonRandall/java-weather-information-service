@@ -11,18 +11,16 @@ import java.util.Map;
 import java.util.Optional;
 
 // Using Spring Boots built in support for REST APIs
-// Expose data via API endpoints
 @RestController
 @RequestMapping("/weather")
 public class WeatherController {
 
-    private WeatherService weatherService;
+    private final WeatherService weatherService;
 
     public WeatherController(WeatherService weatherService) {
         this.weatherService = weatherService;
     }
 
-    // Simple GET methods for city & all weather
     // @PathVariable needs to be in here for the URL suffix
     @GetMapping("/{city}")
     public Optional<Weather> getCityWeather(@PathVariable String city) {

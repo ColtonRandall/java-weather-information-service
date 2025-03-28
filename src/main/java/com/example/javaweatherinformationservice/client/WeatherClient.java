@@ -10,9 +10,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
 
-/*
-    Mock the user to print out to the console
- */
 public class WeatherClient {
 
     WeatherData weatherData = new WeatherData();
