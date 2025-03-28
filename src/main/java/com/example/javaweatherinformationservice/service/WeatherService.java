@@ -86,4 +86,8 @@ public class WeatherService {
         };
         return currentForecast;
     }
+
+    public Map<String, Weather> getWeatherMap() {
+        return weatherMap;
+    }
 }
