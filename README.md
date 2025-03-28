@@ -81,19 +81,24 @@ Unit tests added are passing at the time of submission:
 
 
 
-### Reasoning behind Spring Boot and Maven
+## Reasoning behind Spring Boot and Maven
+**Spring Boot**
+
 Using Springboot and Maven, I built this application with efficiency, testability, and clean code in mind.
 
 I chose to integrate Spring Boot within this project because I hadn't used it before and wanted the
-exposure & learnings. Throughout development, it seemed that the [Spring Web MVC](https://docs.spring.
-io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html) was the appropriate
+exposure & learnings. Throughout development, it seemed that the Spring Web MVC was the appropriate
 framework for this
-weather-api app, and I ultimately chose to use it based on the following passage:
+weather-api app, see docs [here](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html) 
+
+In particular, note the following passage:
 
 >  ... the @Controller mechanism also allows you to create RESTful Websites and applications
 
 The built-in support for REST APIs (i.e. using the @RestController and @GetMapping annotations) made creating and 
 calling endpoints far easier.
+
+**Maven**
 
 I chose to use Maven since it's a popular Java build tool, and for its ability to easily manage and download
 dependencies and configurations. Everything was all set up for me within the
