@@ -20,6 +20,7 @@ I drafted this up in Freeform to hopefully visualise my thinking behind the stru
 
 ### UI
 **Welcome and Main menu:**
+
 ![ConsoleUI.png](images/ConsoleUI.png)
 
 <hr>
@@ -43,6 +44,7 @@ I drafted this up in Freeform to hopefully visualise my thinking behind the stru
 <hr>
 
 **Exiting the application**
+
 ![Exit.png](images/Exit.png)
 
 
