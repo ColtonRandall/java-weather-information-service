@@ -32,15 +32,18 @@ Unit tests added are passing at the time of submission:
 `/weather/Auckland`
 
 ![Auckland.png](images/Auckland.png)
+<hr>
 
 
 `/weather/Rome` - Retrieving a new city that isn't in-memory (i.e. Rome)
 
 ![Rome.png](images/Rome.png)
+<hr>
 
 `/weather/all`
 
 ![AllWeather.png](images/AllWeather.png)
+<hr>
 
 `/weather/all` - After adding / fetching new cities, retrieve all weather and ensure the list has updated
 
@@ -48,8 +51,6 @@ Unit tests added are passing at the time of submission:
 
 
 
-
-<hr>
 
 ### Reasoning behind Spring Boot and Maven
 Using Springboot and Maven, I built this application with efficiency, testability, and clean code in mind.
