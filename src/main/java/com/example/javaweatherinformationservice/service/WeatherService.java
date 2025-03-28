@@ -38,7 +38,7 @@ public class WeatherService {
             - Add them to the weatherMap.
          */
         for(Weather weather : weatherData.generateWeatherInformation()){
-            weatherMap.put(weather.getCityName(), weather);
+            weatherMap.put(weather.getCity(), weather);
         }
     }
 
@@ -49,7 +49,7 @@ public class WeatherService {
     public Optional<Weather> getCityWeatherInformation(String cityName) {
 
         for (Weather weather : weatherMap.values()) {
-            if(Objects.equals(cityName, weather.getCityName())){
+            if(Objects.equals(cityName, weather.getCity())){
                 // If city exists, grab it
                 return Optional.of(weather);
             }
@@ -65,7 +65,7 @@ public class WeatherService {
     public Weather fetchWeatherFromMockApi(String cityName) {
         System.out.println("Fetching weather information for city: " + cityName + "\n");
         Weather fetchedNewWeather = new Weather(cityName, getRandomTemperature(), 'C', date, getRandomForecast());
-        weatherMap.put(fetchedNewWeather.getCityName(), fetchedNewWeather);
+        weatherMap.put(fetchedNewWeather.getCity(), fetchedNewWeather);
         return fetchedNewWeather;
     };
 

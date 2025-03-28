@@ -25,7 +25,7 @@ public class WeatherControllerTest {
 
         // Assert
         assertTrue(weather.isPresent());
-        assertEquals("Auckland", weather.get().getCityName());
+        assertEquals("Auckland", weather.get().getCity());
     }
 
     @Test

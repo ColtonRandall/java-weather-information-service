@@ -78,6 +78,7 @@ public class WeatherClient {
                             }
                     );
                 }
+
                 case "3" -> {
                     System.out.println("Exiting program... Goodbye! 👋");
                     retrievingWeatherData = false;

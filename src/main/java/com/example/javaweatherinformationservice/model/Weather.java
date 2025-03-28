@@ -17,7 +17,7 @@ public class Weather {
     }
 
     // Get methods
-    public String getCityName() {
+    public String getCity() {
         return city;
     }
 

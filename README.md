@@ -17,7 +17,7 @@ here.
 
 ## Architecture
 I drafted this up in Freeform to hopefully visualise my thinking behind the structure of this project.
-![img.png](images/img.png)
+![Diagram.png](images/Diagram.png)
 
 ## Testing
 For the sake of time, I chose not to mock bmy unit tests given this is a simple console application without complex 
@@ -25,22 +25,25 @@ dependencies. I've also mocked the API call for adding a new Weather Object, so 
 
 Unit tests added are passing at the time of submission:
 
-![img_1.png](images/img_1.png)
+![Unit_tests.png](images/Unit_tests.png)
 
 
 ### Postman API Calls are passing
 `/weather/Auckland`
 
-![img_3.png](images/img_3.png)
+![Auckland.png](images/Auckland.png)
 
-
-`/weather/all`
-
-![img_2.png](images/img_2.png)
 
 `/weather/Rome` - Retrieving a new city that isn't in-memory (i.e. Rome)
 
-![img_4.png](images/img_4.png)
+![Rome.png](images/Rome.png)
+
+`/weather/all`
+
+![AllWeather.png](images/AllWeather.png)
+
+
+
 
 <hr>
 
