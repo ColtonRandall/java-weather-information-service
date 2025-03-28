@@ -6,7 +6,6 @@ The structure of this project will be based on the Spring Boot Controller-Servic
 a User interface in the console that will allow a client/user to enter a city and receive weather information (in JSON) about that particular city. 
 
 
-
 <hr>
 
 
@@ -18,6 +17,34 @@ here.
 ## Architecture
 I drafted this up in Freeform to hopefully visualise my thinking behind the structure of this project.
 ![Diagram.png](images/Diagram.png)
+
+### UI
+**Welcome and Main menu:**
+![ConsoleUI.png](images/ConsoleUI.png)
+
+<hr>
+
+**Accessing Auckland in-memory:**
+
+![AucklandConsole.png](images/AucklandConsole.png)
+
+<hr>
+
+**Creating new Weather object Rome in-memory:**
+
+![RomeConsole.png](RomeConsole.png)
+
+<hr>
+
+**Getting all 3 weather objects stored in-memory**
+
+![GetAllConsole.png](images/GetAllConsole.png)
+
+<hr>
+
+**Exiting the application**
+![Exit.png](images/Exit.png)
+
 
 ## Testing
 For the sake of time, I chose not to mock bmy unit tests given this is a simple console application without complex 
